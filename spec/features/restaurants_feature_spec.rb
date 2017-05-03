@@ -20,11 +20,9 @@ feature 'Restaurants' do
 
   context 'restaurants have been added' do
     before do
-      # Restaurant.create(name: 'KFC')
-      visit '/restaurants'
-      click_link 'Add a restaurant'
-      fill_in 'Name', with: 'KFC'
-      click_button 'Create Restaurant'
+      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
+      user = User.first
+      user.restaurants.create(name: 'KFC')
     end
 
     scenario 'display restaurants' do
@@ -84,7 +82,11 @@ feature 'Restaurants' do
   end
 
   context 'editing restaurants' do
-    before {Restaurant.create name: 'KFC', description: 'deep fried goodness', id: 1}
+    before do
+      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
+      user = User.first
+      user.restaurants.create(name: 'KFC', description: 'deep fried goodness')
+    end
     scenario 'let a user edit a restaurant' do
       visit '/restaurants'
       click_link 'Edit KFC'
@@ -99,7 +101,11 @@ feature 'Restaurants' do
   end
 
   context 'deleting restaurants' do
-    before {Restaurant.create name: 'KFC', description: 'deep fried goodness'}
+    before do
+      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
+      user = User.first
+      user.restaurants.create(name: 'KFC')
+    end
     scenario 'removes the restaurant when user clicks delete link' do
       visit '/restaurants'
       click_link 'Delete KFC'
