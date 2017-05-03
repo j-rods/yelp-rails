@@ -20,7 +20,11 @@ feature 'Restaurants' do
 
   context 'restaurants have been added' do
     before do
-      Restaurant.create(name: 'KFC')
+      # Restaurant.create(name: 'KFC')
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      click_button 'Create Restaurant'
     end
 
     scenario 'display restaurants' do
@@ -62,7 +66,14 @@ feature 'Restaurants' do
   end
 
   context 'viewing restaurants' do
-    let!(:kfc){ Restaurant.create(name: 'KFC')}
+    # let!(:kfc){ Restaurant.create(name: 'KFC')}
+    before do
+      # Restaurant.create(name: 'KFC')
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      click_button 'Create Restaurant'
+    end
 
     scenario 'lets a user view a restaurant' do
       visit '/restaurants'

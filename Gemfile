@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'pry'
+
 gem 'omniauth-facebook'
 
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
@@ -37,6 +39,7 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
+  gem 'shoulda'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

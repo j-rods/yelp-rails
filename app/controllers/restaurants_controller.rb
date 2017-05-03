@@ -6,11 +6,15 @@ class RestaurantsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @restaurant = Restaurant.new
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @user = current_user
+    @restaurant = @user.restaurants.new(restaurant_params)
+     # require 'pry'; binding.pry
+
     if @restaurant.save
       redirect_to '/restaurants'
     else
