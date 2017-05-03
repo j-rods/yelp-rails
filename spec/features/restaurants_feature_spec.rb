@@ -64,20 +64,17 @@ feature 'Restaurants' do
   end
 
   context 'viewing restaurants' do
-    # let!(:kfc){ Restaurant.create(name: 'KFC')}
     before do
-      # Restaurant.create(name: 'KFC')
-      visit '/restaurants'
-      click_link 'Add a restaurant'
-      fill_in 'Name', with: 'KFC'
-      click_button 'Create Restaurant'
+      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
+      user = User.first
+      user.restaurants.create(name: 'KFC')
     end
 
     scenario 'lets a user view a restaurant' do
       visit '/restaurants'
       click_link 'KFC'
       expect(page).to have_content 'KFC'
-      expect(current_path).to eq "/restaurants/#{kfc.id}"
+      expect(current_path).to eq "/restaurants/#{Restaurant.last.id}"
     end
   end
 
@@ -96,7 +93,7 @@ feature 'Restaurants' do
       click_link 'Kentucky Fried Chicken'
       expect(page).to have_content 'Kentucky Fried Chicken'
       expect(page).to have_content 'deep fried goodness'
-      expect(current_path).to eq '/restaurants/1'
+      expect(current_path).to eq "/restaurants/#{Restaurant.last.id}"
     end
   end
 
