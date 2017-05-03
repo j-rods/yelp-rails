@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml'
 gem 'spring-commands-rspec'
 
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -31,6 +32,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'rspec-collection_matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

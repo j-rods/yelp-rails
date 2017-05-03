@@ -2,3 +2,12 @@
   = f.label :name
   = f.text_field :name
   = f.submit
+
+- if @restaurant.errors.any?
+  %section#errors
+    %h2
+      = pluralize @restaurant.errors.count, 'error'
+      prohibited this restaurant from being saved:
+    %ul
+      - @restaurant.errors.full_messages.each do |message|
+        %li= message
