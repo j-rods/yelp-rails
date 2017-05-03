@@ -2,12 +2,12 @@ require 'rails_helper'
 
 feature 'Restaurants' do
   before do
+    User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
     visit '/'
-    click_link 'Sign up'
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: '123456'
-    fill_in 'Password confirmation', with: '123456'
-    click_button 'Sign up'
+    click_link 'Sign in'
+    fill_in 'Email', with: "user@name.com"
+    fill_in 'Password', with: 'password'
+    click_button 'Log in'
   end
 
   context 'no restaurants have been added' do
@@ -20,7 +20,6 @@ feature 'Restaurants' do
 
   context 'restaurants have been added' do
     before do
-      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
       user = User.first
       user.restaurants.create(name: 'KFC')
     end
@@ -65,7 +64,6 @@ feature 'Restaurants' do
 
   context 'viewing restaurants' do
     before do
-      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
       user = User.first
       user.restaurants.create(name: 'KFC')
     end
@@ -80,7 +78,6 @@ feature 'Restaurants' do
 
   context 'editing restaurants' do
     before do
-      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
       user = User.first
       user.restaurants.create(name: 'KFC', description: 'deep fried goodness')
     end
@@ -99,7 +96,6 @@ feature 'Restaurants' do
 
   context 'deleting restaurants' do
     before do
-      User.create(email: "user@name.com", password: 'password', password_confirmation: 'password')
       user = User.first
       user.restaurants.create(name: 'KFC')
     end
