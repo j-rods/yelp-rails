@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'omniauth-facebook'
+
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 
 gem 'rails', '~> 5.1.0'
