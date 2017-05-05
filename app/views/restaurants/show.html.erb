@@ -3,5 +3,7 @@
 <p><%= @restaurant.description %></p>
 <p><% @restaurant.reviews.each do |review| %>
   Thoughts:<%= review.thoughts %>
-  Rating:<%= review.rating %></p>
+  Rating:<%= review.rating %>
+  <%= pluralize review.endorsements.count, 'endorsement' %></p>
+
 <% end %>
