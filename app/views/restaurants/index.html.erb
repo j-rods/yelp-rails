@@ -1,15 +1,16 @@
 <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
-    <h2><%= link_to restaurant.name, restaurant_path(restaurant) %>
+    <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
       <%= image_tag restaurant.image.url(:thumb) %>
+      <p>Average rating: <%= star_rating(restaurant.average_rating) %></p>
       <% if current_user %>
         <% if current_user == restaurant.user %>
-          <h2><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)%></h2>
-          <h2><%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %></h2>
+          <p><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)%></p>
+          <p><%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %></p>
 
 
         <% else %>
-          <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
+          <p><%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %></p>
         <% end %>
       <% end %>
   <% end %>

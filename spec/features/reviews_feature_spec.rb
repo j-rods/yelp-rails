@@ -17,8 +17,14 @@ feature 'reviewing' do
   end
 
   scenario 'it displays an average rating for all the reviews' do
+    visit restaurants_path
+    sign_up(email: 'catcat@cat.com')
     leave_review('so so', '3')
+    click_link('Sign out')
+    sign_up(email: 'cat@cat.com')
     leave_review('great', '5')
-    expect(page).to have_content('Average rating: 4')
+    expect(page).to have_content('Average rating: ★★★★☆')
   end
+
+
 end
