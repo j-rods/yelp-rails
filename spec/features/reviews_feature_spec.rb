@@ -15,4 +15,10 @@ feature 'reviewing' do
     click_link 'KFC'
     expect(page).to have_content('so so')
   end
+
+  scenario 'it displays an average rating for all the reviews' do
+    leave_review('so so', '3')
+    leave_review('great', '5')
+    expect(page).to have_content('Average rating: 4')
+  end
 end
